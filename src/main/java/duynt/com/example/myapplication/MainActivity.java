@@ -1,14 +1,18 @@
 package duynt.com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,10 +20,19 @@ public class MainActivity extends AppCompatActivity {
     private AHBottomNavigationViewPager ahBottomNavigationViewPager;
     private ViewPagerAdapter adapter;
 
+    private View viewEndAnimation;
+    private ImageView viewAnimation;
+
+    private int mCountProduct;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        viewEndAnimation = findViewById(R.id.view_end_animation);
+        viewAnimation = findViewById(R.id.view_animation);
+
 
         ahBottomNavigation = findViewById(R.id.AHBottomNavigation);
         ahBottomNavigationViewPager = findViewById(R.id.AHBottomNavigationViewPager);
@@ -60,5 +73,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public View getViewEndAnimation() {
+        return viewEndAnimation;
+    }
+
+    public ImageView getViewAnimation() {
+        return viewAnimation;
+    }
+
+    public void setCountProductInCart(int count){
+        mCountProduct = count;
+        AHNotification notification = new AHNotification.Builder()
+                .setText(String.valueOf(count))
+                .setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red))
+                .setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white))
+                .build();
+        ahBottomNavigation.setNotification(notification, 1);
+    }
+
+    public int getmCountProduct() {
+        return mCountProduct;
     }
 }

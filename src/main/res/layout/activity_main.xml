@@ -16,8 +16,22 @@
         android:id="@+id/AHBottomNavigation"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"/>
+    
+    <View
+        android:id="@+id/view_end_animation"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@color/red"
+        android:layout_above="@id/AHBottomNavigation"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 
-    </com.aurelhubert.ahbottomnavigation.AHBottomNavigation>
-
+    <ImageView
+        android:id="@+id/view_animation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        />
 </RelativeLayout>
